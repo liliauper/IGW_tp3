@@ -1,4 +1,3 @@
-
 package ar.org.centro8.curso.java.web.managedbean;
 
 import ar.org.centro8.curso.java.web.enums.TipoDocumento;
@@ -9,9 +8,10 @@ import javax.inject.Named;
 
 @Named()
 @SessionScoped()
-public class TipoDocumentoMB implements Serializable{
-    public List<TipoDocumento>getTipoDocumento(){
-         return List.of(TipoDocumento.values());
+public class TipoDocumentoMB implements Serializable {
+
+    public List<TipoDocumento> getTipoDocumento() {
+        return List.of(TipoDocumento.values());
     }
-    
+
 }

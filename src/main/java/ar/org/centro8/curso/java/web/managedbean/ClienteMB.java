@@ -20,41 +20,45 @@ import javax.inject.Named;
  */
 @Named()
 @SessionScoped()
-public class ClienteMB implements Serializable{
-    private I_ClienteRepository cr=new ClienteRepository(Connector.getConnection());
-    private Cliente cliente=new Cliente();
-    private String mensaje="";
-    private String buscarApellido="";
-    private String buscarNumeroDocumento="";
-    private String buscarApellidoNumeroDocumento="";
-    
-    public void save(){
+public class ClienteMB implements Serializable {
+
+    private I_ClienteRepository cr = new ClienteRepository(Connector.getConnection());
+    private Cliente cliente = new Cliente();
+    private String mensaje = "";
+    private String buscarApellido = "";
+    private String buscarNumeroDocumento = "";
+    private String buscarApellidoNumeroDocumento = "";
+
+    public void save() {
         try {
             cr.save(cliente);
-            if(cliente.getId()>0)
-                mensaje="Se guardo el articulo id="+cliente.getId();
-            else
-                mensaje="Ocurrio un error!";
-            cliente=new Cliente();
+            if (cliente.getId() > 0) {
+                mensaje = "Se guardo el cliente id: " + cliente.getId();
+            } else {
+                mensaje = "Ocurrio un error!";
+            }
+            cliente = new Cliente();
         } catch (Exception e) {
-            mensaje="Ocurrio un error!";
+            mensaje = "Ocurrio un error!";
         }
     }
-     public List<Cliente>getAll(){
+
+    public List<Cliente> getAll() {
         return cr.getAll();
     }
-    
-    public List<Cliente>getLikeApellido(){
+
+    public List<Cliente> getLikeApellido() {
         return cr.getLikeApellido(buscarApellido);
     }
-    public List<Cliente>getLikeNumeroDocumento(){
+
+    public List<Cliente> getLikeNumeroDocumento() {
         return cr.getLikeNumeroDocumento(buscarNumeroDocumento);
     }
-     public List<Cliente>getLikeApellidoNumeroDocumento(){
+
+    public List<Cliente> getLikeApellidoNumeroDocumento() {
         return cr.getLikeApellidoNumeroDocumento(buscarApellido, buscarNumeroDocumento);
     }
 
-    
     public Cliente getCliente() {
         return cliente;
     }
@@ -94,7 +98,5 @@ public class ClienteMB implements Serializable{
     public void setBuscarApellidoNumeroDocumento(String buscarApellidoNumeroDocumento) {
         this.buscarApellidoNumeroDocumento = buscarApellidoNumeroDocumento;
     }
-    
-    
-    
+
 }
